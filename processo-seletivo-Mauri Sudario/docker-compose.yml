@@ -1,0 +1,46 @@
+version: '3'
+services:
+  web:
+    build: .
+    container_name: web
+
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: app
+      DATABASE_PASSWORD: app
+      DATABASE_NAME: prova_hepta_funcionarios
+      DATABASE_PORT: "3306"
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - db
+
+    links:
+      - db
+
+    networks:
+      - bridge
+
+  db:
+    image: mysql
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: prova_hepta_funcionarios
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+
+    volumes:
+      - ./scripts/iniciar-db.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./scripts/popular-db.sql:/docker-entrypoint-initdb.d/2.sql
+
+    ports:
+      - "3306:3306"
+
+    networks:
+      - bridge
+
+networks:
+  bridge:

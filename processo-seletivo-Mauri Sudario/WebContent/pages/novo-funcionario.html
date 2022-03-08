@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="favicon.ico"/>
+	<title>Cadastrar um novo Funcionário </title>
+	<link rel="stylesheet" type="text/css"
+		href="/funcionarios/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="/funcionarios/resources/css/main.css">
+</head>
+
+<body>
+<div id="cadastro" class="container-fluid">
+
+	<h4>Cadastro de funcionário</h4>
+	<a href="/funcionarios/index.html" class="btn btn-light mb-2" role="button">Voltar</a>
+
+	<form>
+		<div class="form-group">
+			<label>Nome:</label>
+			<input type="text" class="form-control" id="nome" v-model="dnome">
+		</div>
+		<div class="form-group">
+			<label>Email:</label>
+			<input type="email" class="form-control" id="email" v-model="demail">
+		</div>
+		<div class="form-group">
+			<label>Salário:</label>
+			<input type="number" class="form-control" id="salario" v-model="dsalario">
+		</div>
+		<div class="form-group">
+			<label>Idade:</label>
+			<input type="number" class="form-control" id="idade" v-model="didade">
+		</div>
+		<label>Setor:</label>
+		<div class="input-group">
+			<select class="custom-select" id="dopSetor" v-bind="setor" v-model="dsetor">
+				<option disabled value="">Escolha um Setor</option>
+				<option v-for="s in setor" v-bind:value="{id: s.id, nome: s.nome}">{{s.nome}}</option>
+			</select>
+			<div class="input-group-append">
+				<button class="btn btn-outline-secondary" type="button" @click="getSetores"><span class="reload">&#x21bb</span></button>
+			</div>
+		</div>
+	</form>
+	<div>
+		<button class="btn btn-light mt-2" type="button" @click="cadastrarFuncionario(dnome,demail,dsalario,didade,dsetor)">Salvar</button>
+	</div>
+
+	<script src="/funcionarios/resources/js/vue.js"></script>
+	<script src="/funcionarios/resources/js/axios.min.js"></script>
+	<script src="/funcionaris/resources/js/cadastro-de-funcionario.js"></script>
+
+</body>
+</html>

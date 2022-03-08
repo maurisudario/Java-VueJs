@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <title>Editar Funcionário</title>
+    <link rel="stylesheet" type="text/css"
+          href="/funcionarios/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="/funcionarios/resources/css/bootstrap-vue.css">
+
+</head>
+
+<body>
+<div id="editar" class="container-fluid">
+    <h4>Editar Funcionário</h4>
+    <a href="/funcionarios" class="btn btn-light mb-2" role="button">Retornar para a lista</a>
+
+    <form @submit="editarFuncionario">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="fnome" name="fnome" id="nome" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="salario">Salario:</label>
+            <input type="text" name="fsalario" id="salario" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" name="femail" id="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="idade">Idade:</label>
+            <input type="text" name="fidade" id="idade" class="form-control"
+        </div>
+        <label for="setor">Setor:</label>
+        <div class="input-group">
+            <select name="fsetor" id="setor" class="custom-select">
+                <option disabled value="">Escolha um Setor</option>
+                <option v-for="isetor in setor" v-bind:value="{id: isetor, nome: isetor.nome}">{{isetor.nome}}</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" @click="getSetores()"><span class="reload">&#x21bb;</span></button>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-outline-light" type="button" @click="editarFuncionario()">Salvar:</button>
+        </div>
+
+    </form>
+
+
+</div>
+
+</body>
+
+    <script src="/funcionarios/resources/js/vue.js"></script>
+    <script src="/funcionarios/resources/js/axios.min.js"></script>
+    <script src="/funcionarios/resources/js/editar-funcionario.js"></script>
+</body>
+</html>
